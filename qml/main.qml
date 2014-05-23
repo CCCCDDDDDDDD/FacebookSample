@@ -15,16 +15,16 @@ Window {
 
     // You habe to replace the app id with your own facebook app in case you want to test on Android
     appId: "1405862952975746"
-    readPermissions: [ "public_profile", "email", "user_friends" ]
+    readPermissions: [ "public_profile", "user_location" ]
 
     // Handle session state changes
     onSessionStateChanged: {
       if (sessionState === Facebook.SessionOpened) {
         console.debug("Session opened.");
-        // Load user's profile
+        // Load user's basic profile
         fetchUserDetails()
-        // Fetch all friends
-        getGraphRequest("me/friends")
+        // Fetch user details
+        getGraphRequest("me")
       }
       else if (sessionState === Facebook.SessionOpening) {
         console.debug("Session opening...");
@@ -42,10 +42,10 @@ Window {
 
     // Handle the friends request in this callback
     onGetGraphRequestFinished: {
-      if (graphPath === "me/friends" && resultState === Facebook.ResultOk) {
+      if (graphPath === "me" && resultState === Facebook.ResultOk) {
+        // Parse the result json
         var jsonData = JSON.parse(result)
-        var friends = jsonData["data"]
-        profileView.friends = "Friend(s): " + friends.length
+        profileView.location = jsonData["location"]["name"]
       }
     }
   }
@@ -55,42 +55,45 @@ Window {
     anchors.fill: parent
     color: "#E9EAED"
 
-    // Login / Logout Button
-    Button {
-      id: sessionButton
-
-      anchors.top: parent.top
-      anchors.left: parent.left
+    Column {
+      spacing: 20
+      anchors.fill: parent
       anchors.margins: 20
 
-      text: facebook.sessionState === Facebook.SessionOpened ? "Logout" : "Login"
+      Text {
+        font.pixelSize: 22
+        color: "#3B5998"
+        text: "Your Profile"
+      }
 
-      onClicked: {
-        if (facebook.sessionState === Facebook.SessionOpened) {
-          facebook.closeSession()
-        }
-        else {
-          facebook.openSession()
+      // Profile View
+      ProfileView {
+        id: profileView
+
+        visible: facebook.sessionState === Facebook.SessionOpened
+
+        name: facebook.profile.firstName
+        imageUrl: facebook.profile.pictureUrl
+        location: " "
+      }
+
+      // Login / Logout Button
+      Button {
+        id: sessionButton
+
+        text: facebook.sessionState === Facebook.SessionOpened ? "Logout" : "Login"
+
+        onClicked: {
+          if (facebook.sessionState === Facebook.SessionOpened) {
+            facebook.closeSession()
+          }
+          else {
+            facebook.openSession()
+          }
         }
       }
-    }
 
-    // Profile View
-    ProfileView {
-      id: profileView
-
-      visible: facebook.sessionState === Facebook.SessionOpened
-
-      anchors.left: parent.left
-      anchors.top: sessionButton.bottom
-      anchors.right: parent.right
-
-      name: facebook.profile.firstName
-      imageUrl: facebook.profile.pictureUrl
-      gender: facebook.profile.gender
-      friends: "..."
-
-    }
+    } // Column
 
   } // Background Rectangle
 

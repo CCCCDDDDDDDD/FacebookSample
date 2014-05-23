@@ -6,12 +6,12 @@ Rectangle {
   // Properties to set for this view
   property alias imageUrl: profilePicture.source
   property alias name: nameLabel.text
-  property alias gender: genderLabel.text
-  property alias friends: friendsLabel.text
+  property alias location: locationlabel.text
 
 
   // Anchoring settings
   anchors.margins: 20
+  width: parent.width
   height: profilePicture.height + 40
 
 
@@ -48,14 +48,7 @@ Rectangle {
     }
 
     Text {
-      id: genderLabel
-
-      font.pixelSize: 16
-      color: "#666"
-    }
-
-    Text {
-      id: friendsLabel
+      id: locationlabel
       font.pixelSize: 16
       color: "#666"
     }
