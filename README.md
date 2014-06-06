@@ -14,6 +14,6 @@ Instructions
 
 - Android: In case you want to test the plugin on Android you need to create an own Facebook app on http://developers.facebook.com and add your Android signing certificate's key hash to the app. Otherwise you won't be able to login to Facebook with this sample app.
 
-- Run the project and enjoy the ads
+- Run the project and enjoy the Facebook integration
 
 Please also have a look at http://plugins.v-play.net/doc/plugin-facebook/ on how to integrate the plugin into your own Qt 5 apps.
