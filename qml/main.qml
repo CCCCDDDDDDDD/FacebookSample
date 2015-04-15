@@ -14,6 +14,9 @@ Window {
     id: facebook
 
     // You have to replace the app id with your own facebook app in case you want to test on Android
+    // also, upload the key hash of your .keystore file to the Facebook api at http://developers.facebook.com
+    // and make sure to sign with this certificate in Qt Creator -> Projects -> Build Steps -> Build Android SDK -> Sign Package -> Keystore
+    // if errors with build.xml occur, change the path to your Android SDK in vendor/facebook/local.properties or call "android update project --path . --target android-19" as described in the README here: https://github.com/vplayplugins/ChartboostSample
     appId: "1405862952975746"
     readPermissions: [ "public_profile", "user_location" ]
 
