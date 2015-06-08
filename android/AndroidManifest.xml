@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <manifest package="net.vplay.plugins.FacebookSample" xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="1.0" android:versionCode="1" android:installLocation="auto">
     <application android:hardwareAccelerated="true" android:name="net.vplay.helper.VPlayApplication" android:label="@string/app_name">
-        <activity android:configChanges="orientation|uiMode|screenLayout|screenSize|smallestScreenSize|locale|fontScale|keyboard|keyboardHidden|navigation" android:name="net.vplay.helper.VPlayActivity" android:label="@string/app_name" android:screenOrientation="unspecified">
+        <activity android:configChanges="orientation|uiMode|screenLayout|screenSize|smallestScreenSize|locale|fontScale|keyboard|keyboardHidden|navigation" android:name="net.vplay.helper.VPlayActivity" android:label="@string/app_name" android:screenOrientation="unspecified" android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
