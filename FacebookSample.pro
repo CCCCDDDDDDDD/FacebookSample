@@ -16,11 +16,7 @@ ios {
   # Used to add a custom URL scheme
   QMAKE_INFO_PLIST = $$PWD/ios/FacebookSample-Info.plist
 
-  LIBS += -F$$PWD/ios/FacebookSDK -framework FacebookSDK
-}
-
-android {
-  LIBS += -lFacebookPlugin
+  LIBS += -F$$PWD/ios/FacebookSDK
 }
 
 # Default rules for deployment.
