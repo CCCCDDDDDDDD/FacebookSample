@@ -17,6 +17,9 @@ ios {
   QMAKE_INFO_PLIST = $$PWD/ios/FacebookSample-Info.plist
 
   LIBS += -F$$PWD/ios/FacebookSDK
+  LIBS += -framework FacebookSDK
+  LIBS += -framework Security
+  LIBS += -framework SystemConfiguration
 }
 
 # Default rules for deployment.
